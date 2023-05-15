@@ -10,16 +10,20 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-    - name: Run python script
+    - name: Check out code
       uses: actions/checkout@v2
+    
+    - name: Run Python script
       run: python hello.py
 
   build:
     needs: [test]  
     runs-on: ubuntu-latest
     steps:
-    - name: Upload the artifact
+    - name: Check out code
       uses: actions/checkout@v2
+    
+    - name: Upload the Artifact
       uses: actions/upload-artifact@v2
       with:
         name: ${{ env.ARTIFACT_NAME }}
