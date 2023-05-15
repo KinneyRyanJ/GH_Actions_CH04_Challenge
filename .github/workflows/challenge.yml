@@ -6,17 +6,14 @@ jobs:
   Test:
     runs-on: ubuntu-latest
     steps:
-     - uses: actions/checkout@v3
+     - uses: actions/checkout@v2
      - run: python hello.py
-    
   Build:
-    runs-on: ubuntu-latest
-    
     needs: [Test]
-    
+    runs-on: ubuntu-latest
     steps:
-     - uses: actions/checkout@v3
+     - uses: actions/checkout@v2
      - uses: actions/upload-artifact@v2
-      with:
+        with:
         name: hello
         path: .
