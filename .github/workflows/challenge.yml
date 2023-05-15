@@ -2,18 +2,25 @@ name: ch4_challenge
 
 on: [push]
 
+env: 
+  ARTIFACT_NAME: myartifact
+
 jobs:
-  Test:
+  test:
     runs-on: ubuntu-latest
+    
     steps:
+    - name: Run python script
       uses: actions/checkout@v2
       run: python hello.py
-  Build:
-    needs: [Test]
+
+  build:
+    needs: [test]  
     runs-on: ubuntu-latest
     steps:
+    - name: Upload the artifact
       uses: actions/checkout@v2
       uses: actions/upload-artifact@v2
       with:
-        name: hello
+        name: ${{ env.ARTIFACT_NAME }}
         path: .
